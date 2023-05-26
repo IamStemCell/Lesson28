@@ -125,3 +125,41 @@ Quick Sort має середню часову складність O(n log n), �
 Це допомагає зменшити кількість викликів рекурсії та розбиття на розділи, які можуть забирати забагато ресурсів (для невеликих списків).
 
 
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+def quicksort(arr, part_limit):
+    if len(arr) <= part_limit:
+        insertion_sort(arr)
+    else:
+        if len(arr) > 1:
+            pivot = arr[len(arr) // 2]
+            left_half = [x for x in arr if x < pivot]
+            middle = [x for x in arr if x == pivot]
+            right_half = [x for x in arr if x > pivot]
+            quicksort(left_half, part_limit)
+            quicksort(right_half, part_limit)
+            arr[:] = left_half + middle + right_half
+
+
+import random
+
+random_list = random.sample(range(1000), 100)
+print("Random List:", random_list)
+
+part_limits = [10, 20, 30]  # Different partition limits to analyze
+
+for limit in part_limits:
+    sorted_list = random_list.copy()
+    quicksort(sorted_list, limit)
+    print(f"\nPartition Limit: {limit}")
+    print("Sorted List:", sorted_list)
+
+
