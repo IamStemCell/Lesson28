@@ -115,3 +115,13 @@ def merge(left, right):
 #One way to improve the quicksort is to use an insertion sort on lists that are small in length (call it the “partition limit”). 
 #Why does this make sense? Re-implement the quicksort and use it to sort a random list of integers.
 #Perform analysis using different list sizes for the partition limit.
+
+Використання insertion sort на невеликих списках в алгоритмі швидкого сортування quick sort може покращити його продуктивність, завдяки кращій часовій складності для малих розмірів вхідних даних insertin sort з quick sort, з практичною метою економії ресурсів.
+Worst case для сортування вставкою має часову складність O(n^2) , але це не є перешкодою, у тому випадку, коли розмір вхідних даних невеликий. 
+Quick Sort має середню часову складність O(n log n), але через велику кількість кроків розбиття і рекурсію в процесі його виконання, воно має дорожчі витрати по ресурсах.
+
+Застосовуючи сортування insertion для невеликих списків, ми зменшуємо кількість ресурсів що витрачаються на quick sort,завдяки ефективності сортування insertion для малих розмірів вхідних даних. 
+Коли розмір списку стає меншим за певний поріг (межа розділу), ми переходимо до використання сортування insertion замість quick sort.
+Це допомагає зменшити кількість викликів рекурсії та розбиття на розділи, які можуть забирати забагато ресурсів (для невеликих списків).
+
+
