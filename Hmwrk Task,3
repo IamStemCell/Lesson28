@@ -163,3 +163,37 @@ for limit in part_limits:
     print("Sorted List:", sorted_list)
 
 
+ми можемо реревірити продуктивність використання partition limits
+порівнюючи час виконання і кількість порівнянь, зроблених під час сортування. 
+Вимірюючи ці показники для різних меж розділів і розмірів вхідних списків, 
+можна визначити оптимальну межу розділів для збалансування продуктивності між швидким сортуванням і сортуванням вставкою.
+
+import time
+
+random_list = random.sample(range(1000), 1000) 
+
+partition_limits = [10, 20, 30]
+
+for limit in partition_limits:
+    sorted_list = random_list.copy()
+    start_time = time.time()
+    quicksort(sorted_list, limit)
+    end_time = time.time()
+    execution_time = end_time - start_time
+    num_comparisons = len(sorted_list) * (len(sorted_list) - 1) // 2  # Total comparisons for a sorted list
+
+    print(f"\nPartition Limit: {limit}")
+    print("Sorted List:", sorted_list)
+    print("Execution Time:", execution_time) #час виконання
+    print("Number of Comparisons:", num_comparisons) #кількість порівнянь
+
+
+Згенерувала список з 1000 цілих чисел, і для нього створила 
+алгоритм швидкого сортування з межею розділу (10, 20, 30).
+Виміряла час виконання, обчислюючи різницю між початковим і кінцевим часом.
+Кількість порівнянь обчислила на основі довжини відсортованого списку за формулою загальної кількості порівнянь у відсортованому списку (n * (n - 1) / 2).
+
+В результаті маємо час виконання і кількість порівнянь для кожної межі розділу, що дозволяє 
+ проаналізувати продуктивність різних лімітів розділів і визначити, який з них забезпечує найкращий баланс
+ між продуктивністю і якістю сортування для конкретного випадку.
+
